@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録 - PetLife</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <style>
+        .signup-container {
+            background: linear-gradient(135deg, #dcfce7 0%, #fed7aa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .signup-card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 550px;
+            width: 100%;
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .signup-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .signup-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--brown-color);
+            margin-bottom: 10px;
+        }
+
+        .signup-subtitle {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .form-group-signup {
+            margin-bottom: 20px;
+        }
+
+        .form-label-signup {
+            font-weight: 600;
+            color: var(--brown-color);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .form-control-signup {
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 12px 18px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-control-signup:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.15);
+        }
+
+        .form-row-signup {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .pet-selection {
+            background: #f9fafb;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pet-selection-title {
+            font-weight: 600;
+            color: var(--brown-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .pet-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .pet-option {
+            position: relative;
+        }
+
+        .pet-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .pet-option-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            text-align: center;
+        }
+
+        .pet-option-label i {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .pet-option-label span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--brown-color);
+        }
+
+        .pet-option input[type="checkbox"]:checked + .pet-option-label {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #dcfce7, #fed7aa);
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 3px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .terms-checkbox-label {
+            cursor: pointer;
+            color: var(--brown-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .terms-checkbox-label a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .terms-checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-signup {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+            color: white;
+        }
+
+        .signup-footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .signup-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            border-radius: 10px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            background: #ef4444;
+            transition: all 0.3s ease;
+        }
+
+        .password-strength-bar.good {
+            background: #f59e0b;
+            width: 50%;
+        }
+
+        .password-strength-bar.strong {
+            background: #10b981;
+            width: 100%;
+        }
+
+        .info-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-box-text {
+            color: var(--brown-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-fill text-danger"></i> PetLife
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-guide-list.html">ペット図鑑</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-care-guide.html">飼い方ガイド</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-guide-qa.html">Q&A</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-guide-record.html">飼育記録</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 新規登録コンテナ -->
+    <div class="signup-container">
+        <div class="signup-card">
+            <!-- ヘッダー -->
+            <div class="signup-header">
+                <div class="signup-icon">
+                    <i class="bi bi-person-plus-fill"></i>
+                </div>
+                <h1 class="signup-title">新規登録</h1>
+                <p class="signup-subtitle">PetLifeでペットとの生活を楽しくしよう</p>
+            </div>
+
+            <!-- 情報ボックス -->
+            <div class="info-box">
+                <p class="info-box-text">
+                    <i class="bi bi-info-circle"></i> 登録は無料です。5分で完了します。
+                </p>
+            </div>
+
+            <!-- サインアップフォーム -->
+            <form id="signupForm">
+                <!-- ユーザー名 -->
+                <div class="form-group-signup">
+                    <label class="form-label-signup">
+                        <i class="bi bi-person"></i> ユーザー名
+                    </label>
+                    <input type="text" class="form-control-signup" placeholder="ユーザー名を入力" required>
+                </div>
+
+                <!-- メールアドレス -->
+                <div class="form-group-signup">
+                    <label class="form-label-signup">
+                        <i class="bi bi-envelope"></i> メールアドレス
+                    </label>
+                    <input type="email" class="form-control-signup" placeholder="example@email.com" required>
+                </div>
+
+                <!-- パスワード -->
+                <div class="form-group-signup">
+                    <label class="form-label-signup">
+                        <i class="bi bi-lock"></i> パスワード
+                    </label>
+                    <input type="password" id="password" class="form-control-signup" placeholder="••••••••" required>
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="strengthBar"></div>
+                    </div>
+                </div>
+
+                <!-- パスワード確認 -->
+                <div class="form-group-signup">
+                    <label class="form-label-signup">
+                        <i class="bi bi-lock-check"></i> パスワード確認
+                    </label>
+                    <input type="password" id="passwordConfirm" class="form-control-signup" placeholder="••••••••" required>
+                </div>
+
+                <!-- 名前（2列） -->
+                <div class="form-row-signup">
+                    <div class="form-group-signup">
+                        <label class="form-label-signup">
+                            <i class="bi bi-person-fill"></i> 名前（姓）
+                        </label>
+                        <input type="text" class="form-control-signup" placeholder="山田" required>
+                    </div>
+                    <div class="form-group-signup">
+                        <label class="form-label-signup">
+                            名前（名）
+                        </label>
+                        <input type="text" class="form-control-signup" placeholder="太郎" required>
+                    </div>
+                </div>
+
+                <!-- ペットの種類選択 -->
+                <div class="pet-selection">
+                    <label class="pet-selection-title">
+                        <i class="bi bi-paw"></i> 飼っているペット（複数選択可）
+                    </label>
+                    <div class="pet-options">
+                        <div class="pet-option">
+                            <input type="checkbox" id="pet1" name="pets">
+                            <label class="pet-option-label" for="pet1">
+                                <i class="bi bi-emoji-smile"></i>
+                                <span>犬</span>
+                            </label>
+                        </div>
+                        <div class="pet-option">
+                            <input type="checkbox" id="pet2" name="pets">
+                            <label class="pet-option-label" for="pet2">
+                                <i class="bi bi-emoji-heart-eyes"></i>
+                                <span>猫</span>
+                            </label>
+                        </div>
+                        <div class="pet-option">
+                            <input type="checkbox" id="pet3" name="pets">
+                            <label class="pet-option-label" for="pet3">
+                                <i class="bi bi-stars"></i>
+                                <span>小動物</span>
+                            </label>
+                        </div>
+                        <div class="pet-option">
+                            <input type="checkbox" id="pet4" name="pets">
+                            <label class="pet-option-label" for="pet4">
+                                <i class="bi bi-feather"></i>
+                                <span>鳥</span>
+                            </label>
+                        </div>
+                        <div class="pet-option">
+                            <input type="checkbox" id="pet5" name="pets">
+                            <label class="pet-option-label" for="pet5">
+                                <i class="bi bi-water"></i>
+                                <span>魚</span>
+                            </label>
+                        </div>
+                        <div class="pet-option">
+                            <input type="checkbox" id="pet6" name="pets">
+                            <label class="pet-option-label" for="pet6">
+                                <i class="bi bi-droplet-fill"></i>
+                                <span>爬虫類</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 利用規約同意 -->
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label class="terms-checkbox-label" for="terms">
+                        <a href="#">利用規約</a> と <a href="#">プライバシーポリシー</a> に同意します
+                    </label>
+                </div>
+
+                <!-- 登録ボタン -->
+                <button type="submit" class="btn-signup">
+                    <i class="bi bi-check-circle"></i> アカウントを作成
+                </button>
+            </form>
+
+            <!-- ログインへのリンク -->
+            <div class="signup-footer">
+                <p>すでにアカウントをお持ちですか？
+                    <a href="login.html">ログイン</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-heart-fill text-danger"></i> PetLife
+                    </h5>
+                    <p>ペットとの幸せな暮らしを応援する情報サイト</p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h6 class="fw-bold mb-3">サイト情報</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">利用規約</a></li>
+                        <li><a href="#">プライバシー</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h6 class="fw-bold mb-3">サポート</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">ヘルプ</a></li>
+                        <li><a href="#">お問い合わせ</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">フォローする</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-light">
+            <p class="text-center mb-0">&copy; 2024 PetLife. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script>
+        // パスワード強度チェック
+        document.getElementById('password').addEventListener('input', function () {
+            const strength = this.value.length;
+            const bar = document.getElementById('strengthBar');
+            if (strength < 6) {
+                bar.className = 'password-strength-bar';
+            } else if (strength < 10) {
+                bar.className = 'password-strength-bar good';
+            } else {
+                bar.className = 'password-strength-bar strong';
+            }
+        });
+
+        // サインアップフォーム送信
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('passwordConfirm').value;
+
+            if (password !== confirm) {
+                showError('パスワードが一致しません');
+                return;
+            }
+
+            showSuccess('登録完了しました！ログインしてください。');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
