@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン - PetLife</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <style>
+        .login-container {
+            background: linear-gradient(135deg, #dcfce7 0%, #fed7aa 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .login-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--brown-color);
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .form-group-login {
+            margin-bottom: 25px;
+        }
+
+        .form-label-login {
+            font-weight: 600;
+            color: var(--brown-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-control-login {
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 12px 18px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-login:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.15);
+        }
+
+        .form-check-login {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-check-login input[type="checkbox"] {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .form-check-label-login {
+            cursor: pointer;
+            color: var(--brown-color);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+            color: white;
+        }
+
+        .login-divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #d1d5db;
+        }
+
+        .login-divider::before,
+        .login-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .login-divider span {
+            padding: 0 15px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .social-login-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            padding: 12px;
+            border-radius: 15px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--brown-color);
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary-color);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .login-footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-fill text-danger"></i> PetLife
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-guide-list.html">ペット図鑑</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-care-guide.html">飼い方ガイド</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-guide-qa.html">Q&A</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pet-guide-record.html">飼育記録</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ログインコンテナ -->
+    <div class="login-container">
+        <div class="login-card">
+            <!-- ヘッダー -->
+            <div class="login-header">
+                <div class="login-icon">
+                    <i class="bi bi-person-check-fill"></i>
+                </div>
+                <h1 class="login-title">ログイン</h1>
+                <p class="login-subtitle">PetLifeへようこそ</p>
+            </div>
+
+            <!-- ログインフォーム -->
+            <form id="loginForm">
+                <div class="form-group-login">
+                    <label class="form-label-login">
+                        <i class="bi bi-envelope"></i> メールアドレス
+                    </label>
+                    <input type="email" class="form-control-login" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group-login">
+                    <label class="form-label-login">
+                        <i class="bi bi-lock"></i> パスワード
+                    </label>
+                    <input type="password" class="form-control-login" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-check-login">
+                    <input type="checkbox" id="rememberMe" class="form-check-input">
+                    <label class="form-check-label-login" for="rememberMe">
+                        ログイン情報を保存する
+                    </label>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="password-reset.html">パスワードを忘れました？</a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="bi bi-box-arrow-in-right"></i> ログイン
+                </button>
+            </form>
+
+            <!-- ソーシャルログイン -->
+            <div class="login-divider">
+                <span>または</span>
+            </div>
+
+            <div class="social-login-buttons">
+                <button class="social-btn">
+                    <i class="bi bi-google"></i> Google
+                </button>
+                <button class="social-btn">
+                    <i class="bi bi-facebook"></i> Facebook
+                </button>
+            </div>
+
+            <!-- 登録へのリンク -->
+            <div class="login-footer">
+                <p>アカウントをお持ちですか？
+                    <a href="signup.html">新規登録</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-heart-fill text-danger"></i> PetLife
+                    </h5>
+                    <p>ペットとの幸せな暮らしを応援する情報サイト</p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h6 class="fw-bold mb-3">サイト情報</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">利用規約</a></li>
+                        <li><a href="#">プライバシー</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h6 class="fw-bold mb-3">サポート</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">ヘルプ</a></li>
+                        <li><a href="#">お問い合わせ</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold mb-3">フォローする</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-light">
+            <p class="text-center mb-0">&copy; 2024 PetLife. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script>
+        // ログインフォーム送信
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            showSuccess('ログインしました！');
+            setTimeout(() => {
+                window.location.href = 'pet-guide-record.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
