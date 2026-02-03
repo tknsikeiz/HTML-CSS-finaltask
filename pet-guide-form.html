@@ -493,10 +493,10 @@
         <div class="container">
             <div class="text-center">
                 <h1 class="display-4 fw-bold mb-3" style="color: var(--brown-color);">
-                    <i class="bi bi-pencil-square"></i> 飼育記録を投稿
+                    <i class="bi bi-pencil-square"></i> ゲームスコアを投稿
                 </h1>
                 <p class="lead" style="color: var(--brown-color);">
-                    今日のペットの様子を記録しましょう
+                    ゲームのスコアと実績を記録しましょう
                 </p>
             </div>
         </div>
@@ -516,17 +516,17 @@
                             </h3>
 
                             <div class="mb-4">
-                                <label class="form-label">ペットを選択<span class="required-mark">*</span></label>
+                                <label class="form-label">プレイしたゲーム<span class="required-mark">*</span></label>
                                 <select class="form-select" required>
                                     <option value="">選択してください</option>
-                                    <option value="moca" selected>モカ（柴犬・♀）</option>
-                                    <option value="maru">マル（アメリカンショートヘア・♂）</option>
-                                    <option value="hana">ハナ（ミニチュアダックス・♀）</option>
+                                    <option value="elden" selected>Elden Ring</option>
+                                    <option value="dq">ドラゴンクエストXI</option>
+                                    <option value="zelda">ゼルダの伝説</option>
                                 </select>
                             </div>
 
                             <div class="mb-4">
-                                <label class="form-label">記録日時<span class="required-mark">*</span></label>
+                                <label class="form-label">プレイ日時<span class="required-mark">*</span></label>
                                 <div class="date-input-group">
                                     <input type="datetime-local" class="form-control" id="recordDate" required>
                                     <button type="button" class="quick-date-btn" onclick="setToday()">
@@ -534,25 +534,25 @@
                                     </button>
                                 </div>
                                 <div class="help-text">
-                                    <i class="bi bi-info-circle"></i> 記録した日時を入力してください
+                                    <i class="bi bi-info-circle"></i> プレイした日時を入力してください
                                 </div>
                             </div>
 
                             <div class="mb-4">
-                                <label class="form-label">記録カテゴリ<span class="required-mark">*</span></label>
+                                <label class="form-label">記録タイプ<span class="required-mark">*</span></label>
                                 <div class="category-options">
                                     <div class="category-option">
                                         <input type="radio" name="category" id="cat-checkup" value="checkup" required>
                                         <label for="cat-checkup" class="category-label">
-                                            <i class="bi bi-hospital" style="color: #3b82f6;"></i>
-                                            <span>健康診断</span>
+                                            <i class="bi bi-trophy" style="color: #3b82f6;"></i>
+                                            <span>ボスクリア</span>
                                         </label>
                                     </div>
                                     <div class="category-option">
                                         <input type="radio" name="category" id="cat-vaccine" value="vaccine">
                                         <label for="cat-vaccine" class="category-label">
-                                            <i class="bi bi-shield-check" style="color: #f59e0b;"></i>
-                                            <span>ワクチン</span>
+                                            <i class="bi bi-star" style="color: #f59e0b;"></i>
+                                            <span>ハイスコア</span>
                                         </label>
                                     </div>
                                     <div class="category-option">
@@ -591,33 +591,33 @@
                         <div class="form-section">
                             <h3 class="section-title">
                                 <i class="bi bi-chat-left-text-fill"></i>
-                                記録内容
+                                プレイ内容
                             </h3>
 
                             <div class="mb-4">
-                                <label class="form-label">タイトル<span class="required-mark">*</span></label>
-                                <input type="text" class="form-control" placeholder="例：定期健康診断、朝の散歩" required>
+                                <label class="form-label">クエスト/内容<span class="required-mark">*</span></label>
+                                <input type="text" class="form-control" placeholder="例：ボス攻略、ストーリークリア" required>
                                 <div class="help-text">
-                                    <i class="bi bi-lightbulb"></i> 簡潔でわかりやすいタイトルをつけましょう
+                                    <i class="bi bi-lightbulb"></i> クエストやボスの名前を記録しましょう
                                 </div>
                             </div>
 
                             <div class="mb-4">
-                                <label class="form-label">詳細内容<span class="required-mark">*</span></label>
-                                <textarea class="form-control" placeholder="今日のペットの様子や気づいたことを記録してください..."
+                                <label class="form-label">プレイ感想<span class="required-mark">*</span></label>
+                                <textarea class="form-control" placeholder="ゲームプレイの感想や攻略コツを記録してください..."
                                     required></textarea>
                                 <div class="help-text">
-                                    <i class="bi bi-chat-quote"></i> 健康状態、行動、食事、気づいたことなどを詳しく記録しましょう
+                                    <i class="bi bi-chat-quote"></i> 難しかった点、工夫した攻略法などを記録しましょう
                                 </div>
                             </div>
 
                             <div class="mb-4">
-                                <label class="form-label">ペットの気分</label>
+                                <label class="form-label">難易度</label>
                                 <div class="mood-selector">
-                                    <span class="mood-option" data-mood="very-happy" title="とても元気">😄</span>
-                                    <span class="mood-option" data-mood="happy" title="元気">😊</span>
-                                    <span class="mood-option active" data-mood="normal" title="普通">😐</span>
-                                    <span class="mood-option" data-mood="tired" title="疲れ気味">😔</span>
+                                    <span class="mood-option" data-mood="very-easy" title="超簡単">🟢</span>
+                                    <span class="mood-option" data-mood="easy" title="簡単">🟡</span>
+                                    <span class="mood-option active" data-mood="normal" title="普通">🔵</span>
+                                    <span class="mood-option" data-mood="hard" title="難しい">🟣</span>
                                     <span class="mood-option" data-mood="sick" title="体調不良">😷</span>
                                 </div>
                                 <div class="help-text text-center mt-2">
@@ -737,21 +737,21 @@
                         <i class="bi bi-lightbulb-fill"></i> 記録のポイント
                     </h5>
                     <ul>
-                        <li>毎日の健康状態を記録することで、変化に気づきやすくなります</li>
-                        <li>写真を添付すると、成長の記録が見返しやすくなります</li>
-                        <li>気になることは小さなことでもメモしておきましょう</li>
-                        <li>定期的な体重測定は健康管理に重要です</li>
+                        <li>毎回のプレイ記録を取ることで、成長を実感できます</li>
+                        <li>スクリーンショットを添付すると、進度が見返しやすくなります</li>
+                        <li>攻略コツは小さなことでもメモしておきましょう</li>
+                        <li>ボス攻略記録は達成感を記録するのに重要です</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
                     <h5 class="info-card-title">
-                        <i class="bi bi-bar-chart-line-fill"></i> 今月の記録状況
+                        <i class="bi bi-bar-chart-line-fill"></i> 今月のプレイ統計
                     </h5>
                     <div class="mb-3">
                         <div class="d-flex justify-content-between mb-2">
-                            <span>記録日数</span>
-                            <strong style="color: var(--primary-color);">18日 / 20日</strong>
+                            <span>プレイ時間</span>
+                            <strong style="color: var(--primary-color);">45時間 / 50時間</strong>
                         </div>
                         <div class="progress" style="height: 10px; border-radius: 10px;">
                             <div class="progress-bar"
@@ -762,7 +762,7 @@
                     <div class="text-center mt-3">
                         <p class="mb-0" style="color: var(--brown-color);">
                             <i class="bi bi-trophy-fill text-warning"></i>
-                            あと2日で目標達成！
+                            あと5時間でマスター達成！
                         </p>
                     </div>
                 </div>
@@ -774,7 +774,7 @@
                     <div class="small">
                         <div class="d-flex justify-content-between mb-2 pb-2"
                             style="border-bottom: 1px solid rgba(0,0,0,0.1);">
-                            <span>体重測定</span>
+                            <span>ボスクリア</span>
                             <span class="text-muted">11/18</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2 pb-2"
@@ -801,7 +801,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
             </div>
             <div class="toast-body">
-                <i class="bi bi-party-popper"></i> 飼育記録が正常に投稿されました！
+                <i class="bi bi-party-popper"></i> スコア記録が正常に投稿されました！
             </div>
         </div>
 
